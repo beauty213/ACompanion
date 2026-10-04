@@ -31,6 +31,8 @@ interface OnlineMemeItem {
   source_platform?: string
   source_url?: string
   query_used?: string
+  category?: string
+  collection_type?: string
 }
 
 export const JournalExpressView: React.FC<JournalExpressViewProps> = ({
@@ -48,6 +50,7 @@ export const JournalExpressView: React.FC<JournalExpressViewProps> = ({
   const [showExplorer, setShowExplorer] = useState(false)
   const [explorerMemes, setExplorerMemes] = useState<OnlineMemeItem[]>([])
   const [explorerSearch, setExplorerSearch] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState<string>('all')
   const [isSearchingExplorer, setIsSearchingExplorer] = useState(false)
   const [overrides, setOverrides] = useState<Record<string, MemeCritique>>({})
 
@@ -163,16 +166,16 @@ export const JournalExpressView: React.FC<JournalExpressViewProps> = ({
       {/* App Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-            <div style={{ padding: '0.4rem', background: 'rgba(239, 68, 68, 0.15)', borderRadius: '8px' }}>
-              <Flame size={24} color="#f87171" />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+            <div style={{ padding: '0.45rem', background: 'rgba(139, 92, 246, 0.12)', borderRadius: '12px' }}>
+              <Flame size={26} color="var(--accent)" />
             </div>
-            <h1 style={{ fontSize: '2rem', fontWeight: 800, margin: 0, letterSpacing: '-0.03em' }}>
-              Journal Express
+            <h1 style={{ fontSize: '2.1rem', fontWeight: 800, margin: 0, letterSpacing: '-0.03em', color: 'var(--text-primary)' }}>
+              wts on my mind today
             </h1>
           </div>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', margin: '0.35rem 0 0 0' }}>
-            Express raw thoughts. Get immediately reality-checked by real memes from Google & social media.
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.94rem', margin: '0.4rem 0 0 0' }}>
+            Express raw thoughts. Get immediately reality-checked by trending memes, SpongeBob, Anime, Hollywood & Tollywood roasts.
           </p>
         </div>
 
@@ -180,9 +183,19 @@ export const JournalExpressView: React.FC<JournalExpressViewProps> = ({
           <button
             className="btn btn-secondary btn-sm"
             onClick={() => setShowExplorer(true)}
-            style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', borderRadius: '20px', padding: '0.5rem 1rem' }}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.45rem',
+              borderRadius: '20px',
+              padding: '0.55rem 1.15rem',
+              border: '1.5px solid var(--border-subtle)',
+              background: '#ffffff',
+              boxShadow: '0 2px 10px rgba(139, 92, 246, 0.08)',
+              fontWeight: 600,
+            }}
           >
-            <Globe size={16} color="#38bdf8" />
+            <Globe size={16} color="var(--accent)" />
             <span>Google & Social Memes ({explorerMemes.length || 'Live'})</span>
           </button>
         </div>
@@ -192,19 +205,38 @@ export const JournalExpressView: React.FC<JournalExpressViewProps> = ({
       <div
         className="card"
         style={{
-          padding: '1.5rem',
-          border: '1px solid var(--accent)',
-          background: 'linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%)',
-          borderRadius: '16px',
-          boxShadow: '0 8px 24px rgba(0, 0, 0, 0.25)',
+          padding: '1.75rem',
+          border: '1.5px solid var(--border-focus)',
+          background: '#ffffff',
+          borderRadius: '18px',
+          boxShadow: '0 8px 30px rgba(139, 92, 246, 0.08)',
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
-          <Zap size={18} color="var(--accent)" />
-          <h3 style={{ fontSize: '1.15rem', fontWeight: 700, margin: 0 }}>Express Yourself</h3>
-          <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginLeft: 'auto' }}>
-            Write freely — real memes from Google & social media will roast the situation
+          <Zap size={20} color="var(--accent)" />
+          <h3 style={{ fontSize: '1.25rem', fontWeight: 800, margin: 0, color: 'var(--text-primary)' }}>
+            type here something
+          </h3>
+          <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginLeft: 'auto' }}>
+            Write freely — real memes will roast the situation
           </span>
+        </div>
+
+        {/* Monkey Thinking Hero Banner */}
+        <div className="monkey-thinking-card">
+          <img
+            src="/memes/meme10.jpg"
+            alt="Monkey Thinking Meme"
+            className="monkey-thinking-img"
+          />
+          <div className="monkey-thinking-text">
+            <div className="monkey-thinking-title">
+              <span>🐵 Monkey Thinking Moment</span>
+            </div>
+            <div className="monkey-thinking-sub">
+              Sitting with your finger on your chin contemplating poor life choices? Type whatever is spiraling in your head today.
+            </div>
+          </div>
         </div>
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -236,36 +268,57 @@ export const JournalExpressView: React.FC<JournalExpressViewProps> = ({
           <textarea
             className="textarea"
             rows={4}
-            placeholder="What happened? What are you about to do? What excuse are you making for them right now?"
+            placeholder="type here something..."
             value={content}
             onChange={(e) => setContent(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+                e.preventDefault()
+                handleSubmit(e)
+              }
+            }}
             required
-            style={{ fontSize: '0.95rem', lineHeight: 1.6 }}
+            style={{ fontSize: '0.96rem', lineHeight: 1.6 }}
           />
 
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-muted)', fontSize: '0.8rem' }}>
-              <Globe size={16} color="#38bdf8" />
-              <span>Memes sourced from Reddit, Twitter/X, Instagram, and Google Images.</span>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-muted)', fontSize: '0.82rem' }}>
+              <Globe size={16} color="var(--accent)" />
+              <span>Memes sourced from SpongeBob, Anime, Hollywood, Tollywood, and Socials.</span>
             </div>
 
-            <button
-              type="submit"
-              className="btn btn-primary"
-              disabled={isSubmitting || !content.trim()}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                padding: '0.65rem 1.4rem',
-                fontSize: '0.95rem',
-                fontWeight: 700,
-                borderRadius: '10px',
-              }}
-            >
-              <Flame size={16} />
-              <span>{isSubmitting ? 'Searching & Roasting...' : 'Express & Get Critiqued'}</span>
-            </button>
+            {/* Thinking Button with Green Snake Judging beside it */}
+            <div className="thinking-action-wrapper">
+              <button
+                type="submit"
+                className="btn btn-primary"
+                disabled={isSubmitting || !content.trim()}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  padding: '0.65rem 1.6rem',
+                  fontSize: '0.95rem',
+                  fontWeight: 700,
+                  borderRadius: '9999px',
+                }}
+              >
+                <Zap size={16} />
+                <span>{isSubmitting ? 'thinking...' : 'thinking'}</span>
+              </button>
+
+              <div className="snake-judging-side" title="Green snake is watching and judging your thoughts">
+                <img
+                  src="/memes/meme7.jpg"
+                  alt="Green snake judging"
+                  className="snake-judging-avatar"
+                />
+                <div>
+                  <div className="snake-judging-caption">🐍 green snake judging</div>
+                  <div className="snake-judging-hint">judging every word</div>
+                </div>
+              </div>
+            </div>
           </div>
         </form>
       </div>
@@ -570,100 +623,192 @@ export const JournalExpressView: React.FC<JournalExpressViewProps> = ({
       )}
 
       {/* Google & Social Media Meme Explorer Modal */}
-      {showExplorer && (
-        <div className="modal-overlay" onClick={() => setShowExplorer(false)}>
-          <div
-            className="modal-content"
-            onClick={(e) => e.stopPropagation()}
-            style={{ maxWidth: '950px', maxHeight: '85vh', overflowY: 'auto' }}
-          >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <Globe size={22} color="#38bdf8" />
-                <h3 style={{ fontSize: '1.25rem', fontWeight: 800, margin: 0 }}>
-                  Google & Social Media Meme Explorer
-                </h3>
+      {showExplorer && (() => {
+        // Deduplicate memes by meme_url to eliminate any repeating identical memes
+        const uniqueMemes = Array.from(
+          new Map(explorerMemes.map((m) => [m.meme_url, m])).values()
+        )
+
+        const categories = [
+          { id: 'all', label: `All Memes (${uniqueMemes.length})` },
+          { id: 'my_collection', label: '📁 My Collection' },
+          { id: 'trending', label: '🔥 Trending' },
+          { id: 'spongebob', label: '🧽 SpongeBob' },
+          { id: 'anime', label: '🍙 Anime' },
+          { id: 'hollywood', label: '🎬 Hollywood' },
+          { id: 'tollywood', label: '🎭 Tollywood' },
+        ]
+
+        const displayedMemes = uniqueMemes.filter((m) => {
+          if (selectedCategory === 'all') return true
+          const cat = (m.category || m.collection_type || '').toLowerCase()
+          const platform = (m.source_platform || '').toLowerCase()
+          const title = (m.source_title || '').toLowerCase()
+          const sit = (m.query_used || m.verdict || '').toLowerCase()
+
+          if (selectedCategory === 'my_collection') {
+            return cat === 'my_collection' || m.meme_url.startsWith('/memes/')
+          }
+          if (selectedCategory === 'trending') {
+            return cat === 'trending' || platform.includes('tiktok') || sit.includes('trending')
+          }
+          if (selectedCategory === 'spongebob') {
+            return cat === 'spongebob' || platform.includes('spongebob') || title.includes('spongebob')
+          }
+          if (selectedCategory === 'anime') {
+            return cat === 'anime' || platform.includes('anime') || title.includes('naruto') || title.includes('jojo') || title.includes('death note')
+          }
+          if (selectedCategory === 'hollywood') {
+            return cat === 'hollywood' || platform.includes('hollywood') || title.includes('dicaprio') || title.includes('bateman') || title.includes('godfather')
+          }
+          if (selectedCategory === 'tollywood') {
+            return cat === 'tollywood' || platform.includes('tollywood') || title.includes('brahmanandam') || title.includes('pushpa') || title.includes('kishore')
+          }
+          return cat === selectedCategory
+        })
+
+        return (
+          <div className="modal-overlay" onClick={() => setShowExplorer(false)}>
+            <div
+              className="modal-content"
+              onClick={(e) => e.stopPropagation()}
+              style={{
+                maxWidth: '980px',
+                maxHeight: '88vh',
+                overflowY: 'auto',
+                background: '#ffffff',
+                borderRadius: '20px',
+                border: '1.5px solid var(--border-subtle)',
+                boxShadow: '0 20px 50px rgba(139, 92, 246, 0.15)',
+              }}
+            >
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.8rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                  <Globe size={24} color="var(--accent)" />
+                  <h3 style={{ fontSize: '1.35rem', fontWeight: 800, margin: 0, color: 'var(--text-primary)' }}>
+                    Google & Social Media Meme Explorer
+                  </h3>
+                </div>
+                <button className="btn btn-ghost btn-sm" onClick={() => setShowExplorer(false)}>
+                  <X size={20} />
+                </button>
               </div>
-              <button className="btn btn-ghost btn-sm" onClick={() => setShowExplorer(false)}>
-                <X size={18} />
-              </button>
-            </div>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginBottom: '1rem' }}>
-              Browse and search live reaction memes sourced from Reddit, Twitter/X, Instagram, and Google Images.
-            </p>
 
-            {/* Explorer Search Input */}
-            <div style={{ position: 'relative', marginBottom: '1.25rem' }}>
-              <Search size={16} style={{ position: 'absolute', left: '12px', top: '12px', color: 'var(--text-muted)' }} />
-              <input
-                className="input"
-                style={{ paddingLeft: '2.4rem', fontSize: '0.9rem' }}
-                placeholder="Search memes by keyword (e.g. clown, money, overthinking, drama)..."
-                value={explorerSearch}
-                onChange={(e) => handleSearchExplorer(e.target.value)}
-              />
-            </div>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', marginBottom: '1.2rem' }}>
+                Explore diverse, situation-specific memes: SpongeBob, Anime, Hollywood cinema, Tollywood pop culture, trending internet, and your personal meme collection.
+              </p>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(210px, 1fr))', gap: '1rem' }}>
-              {explorerMemes.map((m, idx) => {
-                const badge = getPlatformBadge(m.source_platform)
-                return (
-                  <div
-                    key={m.id || idx}
-                    onClick={() => setSelectedMeme(m)}
-                    style={{
-                      background: '#0a0a0a',
-                      borderRadius: '10px',
-                      overflow: 'hidden',
-                      border: '1px solid var(--border-subtle)',
-                      cursor: 'pointer',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      padding: '8px',
-                      gap: '6px',
-                    }}
+              {/* Category Filter Pills */}
+              <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '1.25rem' }}>
+                {categories.map((c) => (
+                  <button
+                    key={c.id}
+                    className={`pastel-pill ${selectedCategory === c.id ? 'active' : ''}`}
+                    onClick={() => setSelectedCategory(c.id)}
                   >
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span
+                    {c.label}
+                  </button>
+                ))}
+              </div>
+
+              {/* Explorer Search Input */}
+              <div style={{ position: 'relative', marginBottom: '1.25rem' }}>
+                <Search size={16} style={{ position: 'absolute', left: '12px', top: '12px', color: 'var(--text-muted)' }} />
+                <input
+                  className="input"
+                  style={{ paddingLeft: '2.4rem', fontSize: '0.9rem' }}
+                  placeholder="Search memes by keyword (e.g. spongebob, anime, tollywood, money, overthinking)..."
+                  value={explorerSearch}
+                  onChange={(e) => handleSearchExplorer(e.target.value)}
+                />
+              </div>
+
+              {displayedMemes.length === 0 ? (
+                <div style={{ textAlign: 'center', padding: '3rem 1rem', color: 'var(--text-muted)' }}>
+                  No memes found in this category. Try switching filters or search terms!
+                </div>
+              ) : (
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(210px, 1fr))', gap: '1rem' }}>
+                  {displayedMemes.map((m, idx) => {
+                    const badge = getPlatformBadge(m.source_platform)
+                    return (
+                      <div
+                        key={m.id || idx}
+                        onClick={() => setSelectedMeme(m)}
                         style={{
-                          fontSize: '0.65rem',
-                          padding: '1px 6px',
-                          borderRadius: '8px',
-                          background: badge.bg,
-                          color: badge.color,
-                          fontWeight: 600,
+                          background: '#faf9fe',
+                          borderRadius: '12px',
+                          overflow: 'hidden',
+                          border: '1.5px solid var(--border-subtle)',
+                          cursor: 'pointer',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          padding: '10px',
+                          gap: '8px',
+                          boxShadow: '0 2px 8px rgba(139, 92, 246, 0.04)',
+                          transition: 'transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease',
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.transform = 'translateY(-2px)'
+                          e.currentTarget.style.boxShadow = '0 6px 18px rgba(139, 92, 246, 0.12)'
+                          e.currentTarget.style.borderColor = 'var(--accent)'
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.transform = 'none'
+                          e.currentTarget.style.boxShadow = '0 2px 8px rgba(139, 92, 246, 0.04)'
+                          e.currentTarget.style.borderColor = 'var(--border-subtle)'
                         }}
                       >
-                        {badge.label}
-                      </span>
-                    </div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span
+                            style={{
+                              fontSize: '0.68rem',
+                              padding: '2px 8px',
+                              borderRadius: '8px',
+                              background: badge.bg,
+                              color: badge.color,
+                              fontWeight: 700,
+                            }}
+                          >
+                            {badge.label}
+                          </span>
+                        </div>
 
-                    <img
-                      src={m.meme_url}
-                      alt={m.verdict}
-                      style={{ width: '100%', height: '140px', objectFit: 'contain' }}
-                      loading="lazy"
-                      onError={(e) => {
-                        ;(e.currentTarget as HTMLImageElement).src = 'https://i.imgflip.com/24y43o.jpg'
-                      }}
-                    />
+                        <img
+                          src={m.meme_url}
+                          alt={m.verdict}
+                          style={{
+                            width: '100%',
+                            height: '140px',
+                            objectFit: 'contain',
+                            background: '#ffffff',
+                            borderRadius: '8px',
+                            border: '1px solid var(--border-subtle)',
+                          }}
+                          loading="lazy"
+                          onError={(e) => {
+                            ;(e.currentTarget as HTMLImageElement).src = '/memes/meme10.jpg'
+                          }}
+                        />
 
-                    <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#f8fafc', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                      {m.verdict}
-                    </div>
+                        <div style={{ fontSize: '0.8rem', fontWeight: 800, color: 'var(--text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                          {m.verdict}
+                        </div>
 
-                    {m.source_title && (
-                      <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                        {m.source_title}
+                        {m.source_title && (
+                          <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                            {m.source_title}
+                          </div>
+                        )}
                       </div>
-                    )}
-                  </div>
-                )
-              })}
+                    )
+                  })}
+                </div>
+              )}
             </div>
           </div>
-        </div>
-      )}
+        )
+      })()}
 
       {/* Lightbox Image Preview Modal */}
       {selectedMeme && (
@@ -673,7 +818,8 @@ export const JournalExpressView: React.FC<JournalExpressViewProps> = ({
           style={{
             position: 'fixed',
             inset: 0,
-            background: 'rgba(0, 0, 0, 0.88)',
+            background: 'rgba(30, 25, 50, 0.75)',
+            backdropFilter: 'blur(6px)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -687,22 +833,22 @@ export const JournalExpressView: React.FC<JournalExpressViewProps> = ({
               position: 'relative',
               maxWidth: '90vw',
               maxHeight: '90vh',
-              background: 'var(--bg-primary)',
-              borderRadius: '16px',
-              padding: '1.25rem',
+              background: '#ffffff',
+              borderRadius: '20px',
+              padding: '1.5rem',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              boxShadow: '0 20px 40px rgba(0,0,0,0.6)',
-              border: '1px solid var(--border-subtle)',
-              gap: '0.75rem',
+              boxShadow: '0 25px 60px rgba(90, 70, 140, 0.25)',
+              border: '1.5px solid var(--border-subtle)',
+              gap: '1rem',
             }}
           >
             <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div>
-                <span style={{ fontWeight: 800, fontSize: '1rem', color: '#f8fafc' }}>{selectedMeme.verdict}</span>
+                <span style={{ fontWeight: 800, fontSize: '1.1rem', color: 'var(--text-primary)' }}>{selectedMeme.verdict}</span>
                 {selectedMeme.source_platform && (
-                  <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginLeft: '0.5rem' }}>
+                  <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginLeft: '0.6rem', fontWeight: 600 }}>
                     ({selectedMeme.source_platform})
                   </span>
                 )}
@@ -715,11 +861,11 @@ export const JournalExpressView: React.FC<JournalExpressViewProps> = ({
             <img
               src={selectedMeme.meme_url}
               alt={selectedMeme.verdict}
-              style={{ maxWidth: '85vw', maxHeight: '65vh', objectFit: 'contain', borderRadius: '8px', display: 'block' }}
+              style={{ maxWidth: '85vw', maxHeight: '65vh', objectFit: 'contain', borderRadius: '12px', display: 'block' }}
             />
 
             {selectedMeme.critique && (
-              <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', margin: 0, maxWidth: '600px', textAlign: 'center' }}>
+              <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', margin: 0, maxWidth: '620px', textAlign: 'center', lineHeight: 1.5 }}>
                 "{selectedMeme.critique}"
               </p>
             )}
@@ -730,10 +876,10 @@ export const JournalExpressView: React.FC<JournalExpressViewProps> = ({
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-secondary btn-sm"
-                style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', borderRadius: '20px', padding: '0.45rem 1rem' }}
               >
-                <span>Open Original on {selectedMeme.source_platform || 'Web'}</span>
-                <ExternalLink size={13} />
+                <span>Open Source on {selectedMeme.source_platform || 'Web'}</span>
+                <ExternalLink size={14} />
               </a>
             )}
           </div>

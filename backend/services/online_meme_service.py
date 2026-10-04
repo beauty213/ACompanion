@@ -1103,7 +1103,256 @@ SITUATION_MEME_CATALOG: List[Dict[str, Any]] = [
         "source_title": "They Don't Know (I Wish I Was At Home)",
         "source_platform": "Reddit (r/me_irl)",
         "source_url": "https://knowyourmeme.com/memes/i-wish-i-was-at-home-they-dont-know",
-        "query_used": "they dont know party corner wallflower meme"
+        "query_used": "they dont know party corner wallflower meme",
+        "category": "trending"
+    },
+
+    # --- SPONGEBOB MEMES ---
+    {
+        "id": "spongebob-imma-head-out",
+        "category": "spongebob",
+        "collection_type": "spongebob",
+        "situation": "Recognizing an awkward, cursed situation or toxic conversation and exiting immediately",
+        "keywords": ["head out", "leaving", "awkward exit", "chair", "spongebob leaving", "nope", "getting out of here", "uncomfortable situation"],
+        "phrases": ["ight imma head out", "imma head out", "getting out of here", "saw myself out", "time to leave"],
+        "meme_url": "https://i.imgflip.com/392x58.jpg",
+        "verdict": "IGHT IMMA HEAD OUT",
+        "critique": "The second the conversation turned weird, your instinct to stand up from that armchair and vanish into the ocean was 100% correct. Don't linger. Save yourself the second-hand embarrassment.",
+        "source_title": "Ight Imma Head Out SpongeBob",
+        "source_platform": "SpongeBob SquarePants",
+        "source_url": "https://knowyourmeme.com/memes/ight-imma-head-out",
+        "query_used": "ight imma head out spongebob chair exit meme"
+    },
+    {
+        "id": "spongebob-burning-paper",
+        "category": "spongebob",
+        "collection_type": "spongebob",
+        "situation": "Throwing away common sense, solid advice, or your own promises into the garbage fire",
+        "keywords": ["burning", "fire", "advice", "ignoring advice", "threw away", "paper in fire", "waste", "rules"],
+        "phrases": ["threw the advice away", "burning paper", "ignored every warning", "did it anyway"],
+        "meme_url": "https://i.imgflip.com/2wqy8r.jpg",
+        "verdict": "THROWING ADVICE IN THE FIRE",
+        "critique": "Your friends gave you pristine, bulletproof advice and you literally dropped it straight into the campfire like SpongeBob in Bikini Bottom. Stop asking people for advice when you're just going to do the dumbest thing possible anyway.",
+        "source_title": "SpongeBob Burning Paper in Fire",
+        "source_platform": "SpongeBob SquarePants",
+        "source_url": "https://knowyourmeme.com/memes/spongebob-burning-paper",
+        "query_used": "spongebob throws paper in fire meme"
+    },
+    {
+        "id": "handsome-squidward-delusion",
+        "category": "spongebob",
+        "collection_type": "spongebob",
+        "situation": "Acting like a majestic enlightened philosopher when you're just being dramatic and pretentious",
+        "keywords": ["handsome squidward", "jawline", "pretentious", "majestic", "dramatic", "acting deep", "philosopher"],
+        "phrases": ["handsome squidward", "acting like a philosopher", "pretending to be deep", "dramatic entrance"],
+        "meme_url": "https://i.imgflip.com/15h77m.jpg",
+        "verdict": "HANDSOME SQUIDWARD DELUSION",
+        "critique": "You're posing like Handsome Squidward with an exaggerated jawline acting like your 2 AM thoughts are Pulitzer material. You had a minor disagreement over laundry. Relax, Shakespeare.",
+        "source_title": "Handsome Squidward",
+        "source_platform": "SpongeBob SquarePants",
+        "source_url": "https://knowyourmeme.com/memes/handsome-squidward",
+        "query_used": "handsome squidward jawline dramatic pose meme"
+    },
+    {
+        "id": "patrick-star-inner-machinations",
+        "category": "spongebob",
+        "collection_type": "spongebob",
+        "situation": "Overthinking a problem until your brain produces a spilled carton of milk",
+        "keywords": ["patrick", "enigma", "milk", "no thoughts", "empty head", "brain empty", "overthinking nothing"],
+        "phrases": ["inner machinations of my mind", "brain empty", "head empty", "thinking so hard my head hurts"],
+        "meme_url": "https://i.imgflip.com/26103j.jpg",
+        "verdict": "INNER MACHINATIONS ARE AN ENIGMA",
+        "critique": "'The inner machinations of my mind are an enigma.' *Carton of milk spills in slow motion.* That is your entire cognitive process right now. You spent three hours analyzing a one-word text.",
+        "source_title": "Patrick Star Milk Carton",
+        "source_platform": "SpongeBob SquarePants",
+        "source_url": "https://knowyourmeme.com/memes/the-inner-machinations-of-my-mind-are-an-enigma",
+        "query_used": "patrick star milk spilling inner machinations meme"
+    },
+
+    # --- ANIME MEMES ---
+    {
+        "id": "death-note-light-manic-laugh",
+        "category": "anime",
+        "collection_type": "anime",
+        "situation": "Thinking you hatched a 200 IQ mastermind plan when you're walking into an obvious disaster",
+        "keywords": ["death note", "light yagami", "mastermind", "evil laugh", "revenge", "plan", "genius", "scheming"],
+        "phrases": ["evil plan", "light yagami laugh", "all according to keikaku", "they will pay", "calculated revenge"],
+        "meme_url": "https://i.imgflip.com/2wif8m.jpg",
+        "verdict": "DELUSIONAL ANIME MASTERMIND",
+        "critique": "You are writing a five-step revenge scheme like Light Yagami laughing maniacally with a fountain pen. In reality, they forgot who you were three days ago. Close the Death Note and go touch some grass.",
+        "source_title": "Light Yagami Laugh (Death Note)",
+        "source_platform": "Anime (Death Note)",
+        "source_url": "https://knowyourmeme.com/memes/light-yagami-laugh",
+        "query_used": "light yagami manic laugh death note meme"
+    },
+    {
+        "id": "sad-naruto-swing-alone",
+        "category": "anime",
+        "collection_type": "anime",
+        "situation": "Throwing yourself an exaggerated pity party and sitting alone waiting for someone to rescue you",
+        "keywords": ["naruto", "swing", "sad", "alone", "pity party", "nobody loves me", "lonely", "victim"],
+        "phrases": ["naruto swing", "sitting on the swing", "nobody cares about me", "all alone in the world"],
+        "meme_url": "https://i.imgflip.com/4qepd0.jpg",
+        "verdict": "SAD NARUTO ON THE SWING",
+        "critique": "The sad flute music is playing and you're swinging alone like 8-year-old Naruto outside the Academy. Stop waiting for a whole village to apologize to you. Get off the swing and take responsibility.",
+        "source_title": "Sad Naruto on the Swing",
+        "source_platform": "Anime (Naruto)",
+        "source_url": "https://knowyourmeme.com/memes/naruto-on-a-swing",
+        "query_used": "sad naruto swing alone flute meme"
+    },
+    {
+        "id": "jojo-approaching-me",
+        "category": "anime",
+        "collection_type": "anime",
+        "situation": "Walking directly toward conflict or toxic people you have zero chance of defeating",
+        "keywords": ["jojo", "dio", "jotaro", "approaching", "walking towards", "picking a fight", "confrontation"],
+        "phrases": ["oh you're approaching me", "approaching me", "walking right into it", "jojo walk"],
+        "meme_url": "https://i.imgflip.com/39flw2.jpg",
+        "verdict": "OH? YOU'RE APPROACHING ME?",
+        "critique": "Instead of running away, you're walking right toward them with dramatic JoJo posing. You are not Jotaro, and they are about to hit you with emotional road-roller. Turn around.",
+        "source_title": "Oh? You're Approaching Me? (JoJo)",
+        "source_platform": "Anime (JoJo's Bizarre Adventure)",
+        "source_url": "https://knowyourmeme.com/memes/oh-youre-approaching-me-jojo",
+        "query_used": "oh youre approaching me jojo dio meme"
+    },
+    {
+        "id": "is-this-a-pigeon-butterfly",
+        "category": "anime",
+        "collection_type": "anime",
+        "situation": "Confusing the absolute bare minimum effort or mild politeness with unconditional love",
+        "keywords": ["pigeon", "butterfly", "is this", "bare minimum", "confused", "reading into it", "polite"],
+        "phrases": ["is this a pigeon", "bare minimum", "they held the door", "confused kindness for love"],
+        "meme_url": "https://i.imgflip.com/2cjr7j.jpg",
+        "verdict": "IS THIS A PIGEON?",
+        "critique": "They said 'Hey, thanks!' and you're pointing at a butterfly asking 'Is this my soulmate?' It was basic social etiquette from a cashier. Stop drafting wedding vows in your Notes app.",
+        "source_title": "Is This a Pigeon? (Anime Butterfly)",
+        "source_platform": "Anime (The Brave Fighter of Sun Fighbird)",
+        "source_url": "https://knowyourmeme.com/memes/is-this-a-pigeon",
+        "query_used": "is this a pigeon anime butterfly meme"
+    },
+
+    # --- MOVIES & HOLLYWOOD MEMES ---
+    {
+        "id": "leo-pointing-once-upon-time",
+        "category": "hollywood",
+        "collection_type": "hollywood",
+        "situation": "Spotting the exact red flag or betrayal you were warned about weeks ago",
+        "keywords": ["leo", "pointing", "leonardo dicaprio", "spotted", "red flag", "called it", "knew it", "beer"],
+        "phrases": ["pointing at the screen", "called it from day one", "knew this would happen", "spotted the red flag"],
+        "meme_url": "https://i.imgflip.com/3vzejg.jpg",
+        "verdict": "LEO POINTING AT THE SCREEN",
+        "critique": "You're sitting on the sofa with a beer pointing at the screen shouting 'LOOK! THAT'S THE RED FLAG!' You knew they were toxic in chapter 1 and you still bought tickets for the sequel.",
+        "source_title": "Leonardo DiCaprio Pointing (Hollywood)",
+        "source_platform": "Hollywood (Once Upon a Time in Hollywood)",
+        "source_url": "https://knowyourmeme.com/memes/leonardo-dicaprio-pointing",
+        "query_used": "leonardo dicaprio pointing tv once upon time hollywood meme"
+    },
+    {
+        "id": "leo-laughing-django",
+        "category": "hollywood",
+        "collection_type": "hollywood",
+        "situation": "Smugly laughing at someone who tried to play you and failed miserably",
+        "keywords": ["leo laughing", "django", "calvin candie", "laughing with drink", "smug", "played themselves", "exposed"],
+        "phrases": ["laughing at their excuse", "played themselves", "leo laughing with drink", "smug satisfaction"],
+        "meme_url": "https://i.imgflip.com/4acd7j.jpg",
+        "verdict": "DJANGO LEO LAUGH",
+        "critique": "Holding the champagne glass, head thrown back laughing at the most pathetic lie ever whispered. They really thought you wouldn't find out. Pour another drink and let them squirm.",
+        "source_title": "Leonardo DiCaprio Laughing (Django Unchained)",
+        "source_platform": "Hollywood (Django Unchained)",
+        "source_url": "https://knowyourmeme.com/memes/leonardo-dicaprio-laughing-django",
+        "query_used": "leonardo dicaprio laughing drink django meme"
+    },
+    {
+        "id": "patrick-bateman-headphones-walk",
+        "category": "hollywood",
+        "collection_type": "hollywood",
+        "situation": "Pretending you're a cold, mysterious lone wolf when you're just terrible at social interaction",
+        "keywords": ["bateman", "american psycho", "headphones", "suit", "sigma", "cold", "lone wolf", "walk"],
+        "phrases": ["patrick bateman walk", "headphones on ignoring world", "sigma male", "cold and detached"],
+        "meme_url": "https://i.imgflip.com/6j8x61.jpg",
+        "verdict": "PATRICK BATEMAN SIGMA WALK",
+        "critique": "You put in your AirPods, tighten your coat, and do the Patrick Bateman hallway strut thinking you look formidable. You're not an enigmatic corporate predator; you just have social anxiety. Say hi to people.",
+        "source_title": "Patrick Bateman Walking with Headphones",
+        "source_platform": "Hollywood (American Psycho)",
+        "source_url": "https://knowyourmeme.com/memes/patrick-bateman-walking",
+        "query_used": "patrick bateman walk headphones american psycho meme"
+    },
+    {
+        "id": "godfather-massacred-my-boy",
+        "category": "hollywood",
+        "collection_type": "hollywood",
+        "situation": "Returning to a project, relationship, or plan only to find it completely dismantled and ruined",
+        "keywords": ["godfather", "massacred", "ruined", "look how they", "destroyed", "vito corleone", "marlon brando"],
+        "phrases": ["look how they massacred my boy", "ruined my hard work", "everything is ruined", "look what they did"],
+        "meme_url": "https://i.imgflip.com/241ycf.jpg",
+        "verdict": "LOOK HOW THEY MASSACRED MY BOY",
+        "critique": "'Look how they massacred my boy.' You stepped away for 45 minutes and they managed to demolish your entire week's effort. Don't weep over the wreckage; fire the consultants.",
+        "source_title": "Look How They Massacred My Boy (The Godfather)",
+        "source_platform": "Hollywood (The Godfather)",
+        "source_url": "https://knowyourmeme.com/memes/look-how-they-massacred-my-boy",
+        "query_used": "look how they massacred my boy godfather meme"
+    },
+
+    # --- TOLLYWOOD & INDIAN CINEMA MEMES ---
+    {
+        "id": "brahmanandam-deep-thinking-scratch",
+        "category": "tollywood",
+        "collection_type": "tollywood",
+        "situation": "Baffled by completely illogical excuses or trying to comprehend insane drama",
+        "keywords": ["brahmanandam", "tollywood", "scratching head", "telugu", "dookudu", "confused", "thinking hard", "baffled"],
+        "phrases": ["brahmanandam thinking", "scratching my head", "what kind of logic is this", "enti idi", "tollywood comedy"],
+        "meme_url": "/memes/meme10.jpg",
+        "verdict": "BRAHMANANDAM INTENSE SCRATCHING",
+        "critique": "You are sitting here scratching your forehead like King of Comedy Brahmanandam trying to decipher alien logic. There is no hidden wisdom in their excuse. It's just plain nonsense. Stop stressing your brain cells.",
+        "source_title": "Brahmanandam Deep Confusion (Tollywood)",
+        "source_platform": "Tollywood (Telugu Cinema)",
+        "source_url": "https://knowyourmeme.com",
+        "query_used": "brahmanandam thinking scratch head telugu meme"
+    },
+    {
+        "id": "brahmanandam-enti-comedy-aa",
+        "category": "tollywood",
+        "collection_type": "tollywood",
+        "situation": "Someone blatantly disrespecting you and expecting you to laugh it off as a joke",
+        "keywords": ["enti comedy aa", "brahmanandam", "joke", "disrespect", "acting funny", "laugh it off", "tollywood"],
+        "phrases": ["enti comedy aa", "is this comedy to you", "treating me like a joke", "not laughing"],
+        "meme_url": "/memes/meme2.jpg",
+        "verdict": "ENTI COMEDY AA?!",
+        "critique": "'Enti comedy aa?' They insulted you in front of five mutual acquaintances and added 'just kidding bro!' like it covers the damage. You are not their stand-up comedy prop. Put your foot down.",
+        "source_title": "Brahmanandam 'Enti Comedy Aa?'",
+        "source_platform": "Tollywood (Telugu Cinema)",
+        "source_url": "https://knowyourmeme.com",
+        "query_used": "brahmanandam enti comedy aa shocked dialogue meme"
+    },
+    {
+        "id": "pushpa-thaggedhe-le-ego",
+        "category": "tollywood",
+        "collection_type": "tollywood",
+        "situation": "Refusing to apologize or back down even though you are 100% in the wrong due to pure stubbornness",
+        "keywords": ["pushpa", "thaggedhe le", "allu arjun", "stubborn", "ego", "refuse to apologize", "jhukega nahi"],
+        "phrases": ["thaggedhe le", "jhukega nahi", "pushpa attitude", "refuse to back down", "too proud to say sorry"],
+        "meme_url": "/memes/meme7.jpg",
+        "verdict": "THAGGEDHE LE EGO CRASH",
+        "critique": "You hit the chin with the Pushpa beard-swipe whispering 'Thaggedhe Le!' while standing in the middle of a sinkhole you dug yourself. Having stubborn pride when you're clearly wrong is not heroic; it's expensive. Apologize.",
+        "source_title": "Pushpa Thaggedhe Le (Allu Arjun)",
+        "source_platform": "Tollywood (Pushpa)",
+        "source_url": "https://knowyourmeme.com",
+        "query_used": "allu arjun pushpa thaggedhe le beard swipe meme"
+    },
+    {
+        "id": "vennela-kishore-sarcasm",
+        "category": "tollywood",
+        "collection_type": "tollywood",
+        "situation": "Delivering deadpan sarcasm to someone asking for absurd favors or drama",
+        "keywords": ["vennela kishore", "sarcasm", "deadpan", "tollywood", "mari intha direct ga", "side eye", "disbelief"],
+        "phrases": ["vennela kishore sarcasm", "deadpan reaction", "mari intha direct ga adigithe", "dry sarcasm"],
+        "meme_url": "/memes/meme6.jpg",
+        "verdict": "VENNELA KISHORE DEADPAN SARCASM",
+        "critique": "'Mari intha direct ga unte ela?' The deadpan side-eye you gave them was so sharp it could cut diamonds. Keep that exact energy. Don't soften your boundaries just because someone acts surprised.",
+        "source_title": "Vennela Kishore Deadpan Sarcasm",
+        "source_platform": "Tollywood (Telugu Cinema)",
+        "source_url": "https://knowyourmeme.com",
+        "query_used": "vennela kishore deadpan sarcastic expression meme"
     }
 ]
 
@@ -1183,7 +1432,9 @@ class OnlineMemeService:
             "source_url": meme.get("source_url", "https://knowyourmeme.com"),
             "query_used": meme.get("query_used", f"{meme.get('situation', 'relatable')} meme"),
             "situation": meme.get("situation", "Real-world dilemma"),
-            "meme_file": meme["meme_url"]
+            "meme_file": meme["meme_url"],
+            "category": meme.get("category", meme.get("collection_type", "social")),
+            "collection_type": meme.get("collection_type", meme.get("category", "social"))
         }
 
     def shuffle(self, text: str, current_url: Optional[str] = None) -> Dict[str, Any]:
@@ -1215,7 +1466,9 @@ class OnlineMemeService:
             "source_url": picked.get("source_url", "https://knowyourmeme.com"),
             "query_used": picked.get("query_used", f"{picked.get('situation', 'relatable')} meme"),
             "situation": picked.get("situation", "Real-world dilemma"),
-            "meme_file": picked["meme_url"]
+            "meme_file": picked["meme_url"],
+            "category": picked.get("category", picked.get("collection_type", "social")),
+            "collection_type": picked.get("collection_type", picked.get("category", "social"))
         }
 
     def search_online_memes(self, query: str) -> List[Dict[str, Any]]:

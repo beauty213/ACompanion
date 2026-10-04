@@ -9,7 +9,8 @@ from backend.services.ai.ai_service import AIService
 client = TestClient(app)
 
 def test_full_demo_path_end_to_end():
-    # Setup fresh seed data
+    # Setup fresh seed data with clean reset
+    client.post("/api/reset")
     seed_res = client.post("/api/seed")
     assert seed_res.status_code == 200
 
