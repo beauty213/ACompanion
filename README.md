@@ -1,29 +1,91 @@
-# ⚓ ANCHOR — Local-First AI Memory & Reflection Companion
+<div align="center">
 
-> **Built for the Hacktoberfest 2026 DEV "Build for a Friend" Challenge**  
-> *Core Principle: The AI remembers. The human decides.*
+# ⚓ ANCHOR (ACompanion)
 
-Anchor is an intentional, local-first reflection companion. When we navigate recurring personal situations — like contemplating whether to reconnect with someone after a painful cycle of waiting — we often forget our past commitments and boundaries in the heat of the moment.
+### *Local-First AI Memory & Reflection Companion with Real-World Meme Reality-Checks*
 
-Anchor stores what you **choose** to remember, retrieves relevant past context when similar situations arise, and asks reflective questions. It **never** makes decisions for you, **never** diagnoses, and **never** tells you what to do. It is not a generic conversational chatbot; its defining feature is **hindsight memory with verifiable provenance**.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.11+](https://img.shields.io/badge/Python-3.11+-3776AB.svg?logo=python&logoColor=white)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-009688.svg?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![React 19](https://img.shields.io/badge/React-19.2-61DAFB.svg?logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6.svg?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-8.3-646CFF.svg?logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Tests Passing](https://img.shields.io/badge/Tests-32%2F32%20Passed-brightgreen.svg?logo=pytest&logoColor=white)](tests/)
+[![Git Repo](https://img.shields.io/badge/GitHub-beauty213%2FACompanion-blue.svg?logo=github)](https://github.com/beauty213/ACompanion)
+
+<p align="center">
+  <strong>The AI remembers. The human decides. Zero cloud lock-in. 100% offline sovereignty.</strong>
+</p>
+
+[Quickstart](#-quickstart) •
+[Features](#-key-features) •
+[Architecture](#-architecture) •
+[Git Workflow](#-git-quickstart--workflow) •
+[Testing](#-automated-tests) •
+[Git Guide (GIT.md)](GIT.md)
+
+</div>
+
+---
+
+## 📖 Overview
+
+**Anchor** is an intentional, local-first reflection companion designed to break recurring personal loops — like contemplating whether to reconnect with someone after a painful cycle of waiting or repeating past relationship mistakes.
+
+Most chatbots either tell you what to do, hallucinate past conversations, or send your deepest personal vulnerabilities to commercial cloud APIs. Anchor is different:
+- **Hindsight Memory with Verifiable Provenance**: Anchors cite verifiable past notes (`[M1]...[Mn]`). Click *"Why am I seeing this?"* to inspect the exact date, type, and source journal note.
+- **Meme Reality-Checks**: A no-nonsense, hard-hitting situational roast engine that calls out classic self-delusions (deliberately ignoring boundaries, waiting hours for replies, lending money to club-goers) with biting humor and curated internet memes.
+- **Pastel Reflection Space**: A calming, modern user interface (*"What's on my mind today"*) that respects your mental space.
+- **100% Local-First Sovereignty**: SQLite + ChromaDB + open-weight Ollama models (`gemma3:4b`, `nomic-embed-text`). Works completely offline — on flights, during retreats, or when disconnected from the internet.
+
+---
+
+## ✨ Key Features
+
+### 🌸 1. "What's on My Mind Today" Express Journaling
+- Instant thought capture with a clean, pastel aesthetic.
+- Tag thoughts by context modules and severity.
+- Live search and filter across your reflection history.
+
+### 🤡 2. Meme Reality-Check & Critique Engine
+- **32+ Curated Situational Matches**: Matches your reflections against universal patterns (e.g., *Left on Delivered & Replying in 2 Seconds*, *Financing Their Weekend*, *2 AM Location Stalking*, *Texting the Toxic Ex*).
+- **Hard Truths & Biting Roasts**: Zero therapeutic coddling. Gives you an honest, witty wake-up call when you need it most.
+- **Online & Offline Meme Explorer**: Browse, search, filter by category, or shuffle memes with direct links and source provenance (Reddit, Imgflip, Twitter, Know Your Meme).
+
+### ⚓ 3. Hindsight Memory & Provenance Verification
+- **Zero Fabricated Memories**: Strict citation gate strips any uncited claim. If validation fails, deterministic factual citations are returned.
+- **Traceable History**: Every AI reflection links directly to the specific timestamped memory that triggered it.
+
+### 📊 4. Incident & Pattern Analysis
+- Chronological timeline tracking across months.
+- Automatically identifies recurring themes and behavioral loops.
+- "Future Self" notes: Leave commitments and guidance for your future self when cool-headed.
+
+### 🛡️ 5. Privacy & Resilience Guarantee
+- **AI-Down Resilience**: Full app functionality (journaling, browsing, data export) remains 100% available even if Ollama is paused or disabled.
+- **Dual-Store Atomic Deletion**: Deleting a memory purges both SQLite and the Chroma vector database simultaneously.
+- **Crisis Safety Boundaries**: Plain, empathetic, non-judgmental crisis hotline routing if self-harm or danger is detected.
 
 ---
 
 ## 🏗️ Architecture
 
-Anchor is built on a decoupled, offline-first architecture where the memory system operates independently of the AI layer:
+Anchor separates the private storage layer, retrieval engine, and inference provider cleanly:
 
 ```
 ┌────────────────────────────────────────────────────────┐
-│                   React + Vite UI                      │
-│     (Neutral, calm, mature, zero cloud / Ollama calls) │
+│             React 19 + TypeScript + Vite               │
+│   ("What's on my mind today", Pastel UI, Meme Explorer)│
 └───────────────────────────┬────────────────────────────┘
                             │ HTTP (127.0.0.1:8001)
 ┌───────────────────────────▼────────────────────────────┐
 │                    FastAPI Local API                   │
 ├───────────────────────────┬────────────────────────────┤
-│       MemoryService       │         AIService          │
-│   (SQLite + VectorStore)  │  (ModelMgr + EmbeddingMgr) │
+│       MemoryService       │    OnlineMemeService       │
+│   (SQLite + VectorStore)  │   (Situations & Roasts)    │
+├───────────────────────────┼────────────────────────────┤
+│       JournalService      │        AIService           │
+│   (CRUD + Provenance)     │  (ModelMgr + EmbeddingMgr) │
 ├───────────────────────────┴────────────────────────────┤
 │                    ReflectionEngine                    │
 │   (Retrieval, Strict Citation Gate, Safety Filter)     │
@@ -35,115 +97,156 @@ Anchor is built on a decoupled, offline-first architecture where the memory syst
     & Local Chroma Vector          gemma3:4b / nomic-embed-text
 ```
 
-### Key Technical Pillars
-1. **AI Down Resilience**: SQLite and stored memories are the foundation. If Ollama is offline or stopped, Anchor remains 100% usable (journaling, browsing memories, timeline, data export).
-2. **Zero Fabricated Memory (Hard Gate)**: Small local LLMs can drift. Anchor passes numbered memories `[M1]...[Mn]` and verifies citations server-side. Any uncited claims ("you told me...", "you previously felt...") are stripped. If validation fails twice, a deterministic template constructed directly from retrieved memories is returned.
-3. **Dual-Store Atomic Deletion**: Deleting a memory purges the SQLite row, its source relationships, and its vector embedding. A dedicated test guarantees it can never be retrieved afterwards.
-4. **Safety Boundaries**: Anchor is not a therapist or crisis service. If expressions of self-harm or imminent danger are detected, Anchor immediately surfaces plain, non-judgmental crisis hotline information.
-
 ---
 
 ## 🚀 Quickstart
 
-### 1. Prerequisites
-- Python 3.11+
-- Node.js 18+
-- [Ollama](https://ollama.ai) (optional for base memory usage; required for local inference)
+### Prerequisites
+- **Python 3.11+**
+- **Node.js 18+** & **npm**
+- **[Ollama](https://ollama.ai)** (Optional for journal & memes; required for local AI reflections)
 
-### 2. Install & Setup
+---
+
+### 1. Clone the Git Repository
 ```bash
-# Clone repository
-git clone https://github.com/your-repo/anchor.git
-cd anchor
-
-# Setup Python Virtual Environment
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt   # or pip install fastapi uvicorn pydantic pytest httpx chromadb
-
-# Install Frontend Dependencies
-npm --prefix frontend install
+git clone https://github.com/beauty213/ACompanion.git
+cd ACompanion
 ```
 
-### 3. Local Model Setup (Ollama)
+---
+
+### 2. Backend Setup
 ```bash
-# Pull the default open-weight reflection and embedding models
+# Create and activate Python virtual environment
+python3 -m venv .venv
+source .venv/bin/activate
+
+# Install backend dependencies
+pip install -r requirements.txt
+```
+
+---
+
+### 3. Frontend Setup
+```bash
+cd frontend
+npm install
+cd ..
+```
+
+---
+
+### 4. Optional: Download Local AI Models (Ollama)
+```bash
 ollama pull gemma3:4b
 ollama pull nomic-embed-text
 ```
+*(Anchor gracefully falls back to deterministic hindsight mode if Ollama is not running).*
 
-### 4. Seed Demo Data & Launch
+---
+
+### 5. Seed Demo Data & Launch
+
+#### Option A: Using Convenience Scripts (Recommended)
 ```bash
-# Seed the fictional June–October scenario
+# Terminal 1: Launch Backend (http://127.0.0.1:8001)
+./run_backend.sh
+
+# Terminal 2: Launch Frontend (http://localhost:5173)
+./run_frontend.sh
+```
+
+#### Option B: Manual Launch
+```bash
+# Terminal 1: Backend
 source .venv/bin/activate
-python3 -m backend.seed_data
+uvicorn backend.main:app --host 127.0.0.1 --port 8001 --reload
 
-# Option A: Using convenience scripts
-./run_backend.sh     # Terminal 1 (runs on http://127.0.0.1:8001)
-./run_frontend.sh    # Terminal 2 (runs on http://localhost:5173)
-
-# Option B: Manual commands (run from the project root)
-# Terminal 1:
-source .venv/bin/activate
-uvicorn backend.main:app --host 127.0.0.1 --port 8001
-
-# Terminal 2:
+# Terminal 2: Frontend
 npm --prefix frontend run dev
 ```
-Open **http://localhost:5173** in your browser.
+
+Visit **[http://localhost:5173](http://localhost:5173)** in your browser!
 
 ---
 
-## 🎬 The Demo Path (Section 13)
+## 🐙 Git Quickstart & Workflow
 
-1. **Write**: In the Journal tab, write:
-   > *"I'm thinking about reconnecting with this person."*
-2. **Retrieve Past Context**: Anchor surfaces past records from June–August:
-   > *"You mentioned something similar before [M1]. You previously recorded (Boundary): 'I step back and preserve space whenever communication becomes an anxious one-sided waiting game.' What feels different this time?"*
-3. **Verify Provenance**: Click **Why am I seeing this?** to inspect the exact date, type, and source journal note.
-4. **Inspect Timeline**: View the chronological journey across June–October and observe the recurring theme banner.
-5. **Future Self Note**: See the note you left for yourself:
-   > *"Remember how heavy it felt waiting by the phone all summer. If you consider reconnecting, ask what is actually different before stepping back in."*
-6. **Decide & Save**: Reflect on *"What feels different this time?"* and save your new confirmed memory.
-7. **Offline Test**: Disconnect Wi-Fi or kill Ollama (`pkill ollama`). Query **Ask My Past** and watch Anchor generate a local reflection completely offline!
+For detailed Git guidelines, branching strategies, and cheatsheets, see [GIT.md](GIT.md).
 
----
+### Basic Git Commands for this Repository:
 
-## 🔒 Why Open-Weight and Local Matters
-
-Building Anchor as a local-first software utilizing open-weight AI models (`gemma3:4b`, `nomic-embed-text`) is not merely a technical preference — it is an ethical requirement:
-
-1. **Privacy of Vulnerable Reflections**: Personal reflections contain relationship dynamics, boundaries, emotional vulnerabilities, and private dilemmas. Sending these thoughts to third-party cloud APIs poses unacceptable data leakage and behavioral profiling risks.
-2. **Zero Vendor Lock-In & Cloud Dependency**: Proprietary APIs can be sunset, terms of service can change, and subscription costs can skyrocket. Open-weight models belong to the user indefinitely.
-3. **True Offline Sovereignty**: Life happens everywhere — on airplanes, in rural retreats, or during power outages. Anchor works without internet connectivity.
-4. **Model Inspectability & Swappability**: Users can inspect, swap, or fine-tune models behind standard interfaces without rewriting their companion.
-5. **Zero Training on Personal Data**: Your personal journals and private thoughts are never ingested into commercial training corpora.
-
----
-
-## 💬 Built for a Friend: Feedback & Evolution
-
-Anchor was created for a close friend who noticed a recurring pattern of giving second chances to people who routinely went silent for days, only to re-experience the same letdown. She needed a calm, non-judgmental space that wouldn't lecture her or tell her what to do, but would gently hold up a mirror to her own past words when the familiar dilemma returned.
-
-> *Placeholder: Awaiting post-challenge feedback notes from the friend this was built for (to be included with her consent; no real personal data will ever be committed to this repository).*
-
----
-
-## 🧪 Running Automated Tests
-
-Run the complete 18-test automated test suite:
 ```bash
-source .venv/bin/activate
-PYTHONPATH=. pytest -v tests/
+# Check repository status
+git status
+
+# Fetch and sync with latest main branch
+git checkout main
+git pull --rebase origin main
+
+# Create a new feature branch
+git checkout -b feature/your-feature-name
+
+# Stage and commit your changes
+git add .
+git commit -m "feat: describe your change"
+
+# Push your branch to GitHub
+git push -u origin feature/your-feature-name
 ```
 
-- `tests/test_memory_service.py`: SQLite CRUD, status transitions, export/reset/seed.
-- `tests/test_ai_layer.py`: Local AI provider health, model manager, graceful offline handling.
-- `tests/test_retrieval.py`: Ranked semantic retrieval and atomic dual-store deletion.
-- `tests/test_provenance.py`: Zero uncited historical claims across 20 test prompts & crisis safety.
-- `tests/test_demo_path.py`: Complete end-to-end Section 13 demo scenario.
+---
+
+## 🧪 Automated Tests
+
+The repository includes a comprehensive 32-test automated test suite covering SQLite CRUD, AI provider status, ranked semantic retrieval, zero-fabrication provenance gating, meme critique generation, and incident analysis:
+
+```bash
+source .venv/bin/activate
+PYTHONPATH=. pytest -v
+```
+
+### Test Coverage Highlights:
+- `tests/test_memory_service.py` — SQLite transactions, status transitions, data export.
+- `tests/test_ai_layer.py` — Local Ollama health, embedding resilience, offline handling.
+- `tests/test_retrieval.py` — Semantic retrieval and atomic dual-store deletion.
+- `tests/test_provenance.py` — Verifies 0 uncited historical claims across 20 prompt variations.
+- `tests/test_critique_service.py` — Meme situation matching, verdicts, and keyword triggers.
+- `tests/test_incident_analysis.py` — Incident aggregation and module analytics.
+- `tests/test_demo_path.py` — End-to-end user scenario validation.
 
 ---
 
-## 📄 License
-MIT License. Built for Hacktoberfest 2026.
+## 🔌 API Overview
+
+| Endpoint | Method | Description |
+|---|---|---|
+| `/api/health` | `GET` | Health check and system version |
+| `/api/journal` | `GET`, `POST` | List and create journal entries |
+| `/api/memes` | `GET` | Complete catalog of 32+ situations and memes |
+| `/api/memes/search?q={query}` | `GET` | Search memes by situation or query |
+| `/api/critique` | `POST` | Evaluate journal text and generate a meme reality-check |
+| `/api/ai/status` | `GET` | Inspect Ollama, model availability, and embedding status |
+| `/api/ai/ask-past` | `POST` | Execute verified hindsight retrieval and reflection |
+| `/api/modules` | `GET`, `POST` | Manage context tracking modules |
+| `/api/analysis/{module_id}` | `GET` | Generate pattern and incident analysis report |
+
+Interactive Swagger documentation is available locally at **[http://127.0.0.1:8001/docs](http://127.0.0.1:8001/docs)** when the backend is running.
+
+---
+
+## 🔒 Privacy & Local AI Manifesto
+
+1. **Private by Architecture**: Personal reflections, emotional vulnerabilities, and relationship boundaries must never leave your machine.
+2. **Zero Commercial Data Ingestion**: Open-weight local models mean your journals are never collected into corporate training corpora.
+3. **True Offline Sovereignty**: Your companion belongs to you forever, without subscription lock-in or fear of API deprecation.
+4. **Resilience Over Hype**: If the AI model fails or is offline, core data remains 100% accessible and editable.
+
+---
+
+## 📄 License & Credits
+
+- Licensed under the **[MIT License](LICENSE)**.
+- Built with ❤️ for Hacktoberfest 2026.
+- GitHub: [beauty213/ACompanion](https://github.com/beauty213/ACompanion)
